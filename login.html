@@ -571,23 +571,21 @@
 
     <script type="text/javascript" src="your-example.js"></script>
     <script>
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbzYfU0-HrClTLk81JR2WA8F2KqeLb-3RhBkykFve_cgNyYscdPgizGAbMGnby1G00Qg/exec";
-      const form = document.forms["submit-to-google-sheet"];
-
-      form.addEventListener("Login", (e) => {
-        e.preventDefault();
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) => {
-           Login.innerHTML = "Login Success";
-            Login.style.color = "green";
-            setTimeout(function () {
-              msg.innerHTML = "";
-            }, 1000);
-            form.reset();
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbzYfU0-HrClTLk81JR2WA8F2KqeLb-3RhBkykFve_cgNyYscdPgizGAbMGnby1G00Qg/exec'
+      const form = document.forms['submit-to-google-sheet']
+      const msg = document.getElementById("msg");
+      form.addEventListener('Login', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            msg.innerHTML="messeage sent succesfully!"
+            setTimeout(function(){
+              msg.innerHTML=""
+            },1000)
+            form.reset()
           })
-          .catch((error) => console.error("Error!", error.message));
-      });
+          .catch(error => console.error('Error!', error.message))
+      })
     </script>
   </body>
 </html>
